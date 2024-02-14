@@ -1,11 +1,7 @@
 from fastapi import FastAPI
+from app.routers import app_futbolAPI
 
 app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+app = FastAPI(title="Futebol-API", description="API de integração, para gerenciar partidas de futebol", version="0.1")
+app.include_router(app_futbolAPI)
