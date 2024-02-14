@@ -9,7 +9,7 @@ _Lab/
 /_lab
 _lab/
 alembic.ini
-
+/migrations/versions
 # C extensions
 *.so
 
