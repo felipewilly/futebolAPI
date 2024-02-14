@@ -6,8 +6,9 @@ _Lab/
 /_Lab
 /_Lab
 /_LabLinux
-.vscode/
-/.vscode
+/_lab
+_lab/
+
 # C extensions
 *.so
 
