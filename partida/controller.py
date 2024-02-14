@@ -14,3 +14,8 @@ def post_partida(partida: Partida):
             response_model=PartidaOut)
 def get_partida(id: int):
     ...
+
+@router.put("/{id}", summary='Retorna uma partida', 
+            response_model=PartidaOut)
+def update_partida(id: int):
+    ...
