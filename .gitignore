@@ -8,6 +8,7 @@ _Lab/
 /_LabLinux
 /_lab
 _lab/
+alembic.ini
 
 # C extensions
 *.so

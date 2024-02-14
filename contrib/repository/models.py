@@ -1,0 +1,1 @@
+from partida.model import Partida
