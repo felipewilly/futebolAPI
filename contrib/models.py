@@ -3,4 +3,4 @@ from sqlalchemy import Integer
 
 
 class BaseModel(DeclarativeBase):
-    pk_id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    pk_id: Mapped[int] = mapped_column(Integer, primary_key=True)
