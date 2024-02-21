@@ -12,4 +12,8 @@ class PartidaSchema(BaseSchema):
     Povo: Annotated[PositiveInt, Field(description='Porcentagem Povo', example=50)]
     Agenda: Annotated[datetime, Field(description='Data e hora da partida', example='2024-02-13T20:00:00')]
 
-    
+class PartidaSchema_id(PartidaSchema):
+    ...
+
+class PartidaSchema_update(BaseSchema):
+    Url: Annotated[Optional[str], Field(description='URL da partida', example='https://www.futebol.com/partida/1234', default=None)]
