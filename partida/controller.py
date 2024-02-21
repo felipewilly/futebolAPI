@@ -19,9 +19,8 @@ async def post_partida(db_session: DatabaseDependency, partida: PartidaSchema = 
     db_session.add(partida_db)
     await db_session.commit()
     await db_session.refresh(partida_db)
-    partida_out = PartidaSchema_id(Id=partida_db.pk_id, **partida.model_dump())
 
-    return {'message': 'Partida criada com sucesso'}
+    return {'message': f'Partida criada com sucesso ID {partida_db.pk_id}'}
 
 @router.get("/all", 
     summary='Retorna Varias partidas', 
@@ -35,15 +34,15 @@ async def get_all_partida(db_session: DatabaseDependency, skip: int = 0, limit: 
 @router.get("/{id}", 
     summary='Retorna uma partida',
     status_code=status.HTTP_200_OK,
-    response_model=PartidaSchema)
+    response_model=PartidaSchema_id)
 async def get_partida(id: int, db_session: DatabaseDependency):
 
-    partida_db: PartidaSchema = (await db_session.execute(select(PartidaModel).filter_by(pk_id=id))).scalars().first() # type: ignore
+    partida_db: PartidaSchema_id = (await db_session.execute(select(PartidaModel).filter_by(pk_id=id))).scalars().first()
 
     return partida_db
 
 @router.patch("/{id}", summary='Atualiza uma partida', 
-            response_model=PartidaSchema)
+            response_model=Message)
 async def update_partida(id: int, db_session: DatabaseDependency, partida_up: PartidaSchema_update = Body(...)):
 
     partida_db: PartidaSchema = (await db_session.execute(select(PartidaModel).filter_by(pk_id=id))).scalars().first() 
@@ -56,4 +55,4 @@ async def update_partida(id: int, db_session: DatabaseDependency, partida_up: Pa
     await db_session.commit()
     await db_session.refresh(partida_db)
 
-    return partida_db
+    return {'message': f'Partida atualizada com sucesso ID {partida_db.pk_id}, Nova URL {partida_db.Url}'}
