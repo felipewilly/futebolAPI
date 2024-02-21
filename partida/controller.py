@@ -1,9 +1,8 @@
 
 from fastapi import APIRouter, HTTPException, status, Body
-from pydantic import model_validator
 from sqlalchemy.future import select
-from uuid import uuid1
 from partida.schema import PartidaSchema, PartidaSchema_id, PartidaSchema_update
+from contrib.schemas import Message
 from partida.model import PartidaModel
 from configs.dependencies import DatabaseDependency
 
@@ -12,7 +11,7 @@ router = APIRouter()
 @router.post("/",
     summary='Cria uma nova partida',
     status_code=status.HTTP_201_CREATED,
-    response_model=PartidaSchema_id)
+    response_model=Message)
 async def post_partida(db_session: DatabaseDependency, partida: PartidaSchema = Body(...)):
 
     partida_db = PartidaModel(**partida.model_dump())
@@ -22,16 +21,16 @@ async def post_partida(db_session: DatabaseDependency, partida: PartidaSchema = 
     await db_session.refresh(partida_db)
     partida_out = PartidaSchema_id(Id=partida_db.pk_id, **partida.model_dump())
 
-    return partida_out
+    return {'message': 'Partida criada com sucesso'}
 
 @router.get("/all", 
     summary='Retorna Varias partidas', 
-    response_model=list[PartidaSchema])
-async def get_all_partida(db_session: DatabaseDependency) -> list[PartidaSchema]:
+    response_model=list[PartidaSchema_id])
+async def get_all_partida(db_session: DatabaseDependency, skip: int = 0, limit: int = 100 ):
 
-    partidas: list[PartidaSchema] = (await db_session.execute(select(PartidaModel))).scalars().all()
+    partidas_db = (await db_session.execute(select(PartidaModel).offset(skip).limit(limit))).scalars().all()
 
-    return partidas
+    return partidas_db
     
 @router.get("/{id}", 
     summary='Retorna uma partida',
