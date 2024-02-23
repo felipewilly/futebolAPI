@@ -3,6 +3,7 @@ from sqlalchemy import Integer, String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime, date
 from contrib.models import BaseModel
+import probabilidade
 
 
 class PartidaModel(BaseModel):
@@ -15,4 +16,5 @@ class PartidaModel(BaseModel):
     Created_at: Mapped[date] = mapped_column(DateTime, nullable=False)
     Agenda: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     entrada: Mapped['EntradaModel'] = relationship(back_populates="partida")
+    probabilidade: Mapped['ProbabilidadeModel'] = relationship(back_populates="partida")
 

@@ -1,5 +1,5 @@
 '''
-Dados genericos para teste de entrada e validação da etapa ENTRADA
+Class validadação temporaria cauculo para probabilidade
 '''
 
 class Partida_Vasco:
