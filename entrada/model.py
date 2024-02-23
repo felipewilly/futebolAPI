@@ -2,14 +2,14 @@
 from sqlalchemy import Integer, String, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from contrib.models import BaseModel
-from partida.model import PartidaModel
+
 
 
 class EntradaModel(BaseModel):
-    __tablename__ = 'entrada'
+    __tablename__ = 'entradas'
 
-    Partida_id: Mapped[int] = mapped_column(Integer, ForeignKey(PartidaModel.pk_id), nullable=False)
-    Partida: Mapped['PartidaModel'] = relationship(back_populates='entrada', lazy='select')
+    partida: Mapped['PartidaModel'] = relationship(back_populates="entrada", lazy='select')
+    partida_id: Mapped[int] = mapped_column(Integer, ForeignKey("partidas.pk_id"), nullable=False)
     Url: Mapped[str] = mapped_column(String, nullable=False)
     Nome: Mapped[str] = mapped_column(String(255), nullable=False)
     Local: Mapped[str] = mapped_column(String(1), nullable=False)
