@@ -1,7 +1,7 @@
 
 from typing import Annotated
 from contrib.schemas import BaseSchema_id
-from pydantic import BaseModel, Field, PositiveInt
+from pydantic import Field, PositiveInt
 
 class EntradaSchema(BaseSchema_id):
     Url: Annotated[str, Field(description='URL da partida', example='https://www.futebol.com/partida/1234')]

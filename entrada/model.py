@@ -8,8 +8,9 @@ from contrib.models import BaseModel
 class EntradaModel(BaseModel):
     __tablename__ = 'entradas'
 
-    partida: Mapped['PartidaModel'] = relationship(back_populates="entrada", lazy='select')
+    
     partida_id: Mapped[int] = mapped_column(Integer, ForeignKey("partidas.pk_id"), nullable=False)
+    partida: Mapped['PartidaModel'] = relationship(back_populates="entrada", lazy='select')
     Url: Mapped[str] = mapped_column(String, nullable=False)
     Nome: Mapped[str] = mapped_column(String(255), nullable=False)
     Local: Mapped[str] = mapped_column(String(1), nullable=False)
