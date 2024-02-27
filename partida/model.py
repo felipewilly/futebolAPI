@@ -3,7 +3,7 @@ from sqlalchemy import Integer, String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime, date
 from contrib.models import BaseModel
-import probabilidade
+
 
 
 class PartidaModel(BaseModel):

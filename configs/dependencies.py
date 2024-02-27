@@ -1,3 +1,7 @@
+"""
+Arquivo de dependências do FastAPI, conexão async com o banco de dados
+"""
+
 from typing import Annotated
 from fastapi import Depends
 

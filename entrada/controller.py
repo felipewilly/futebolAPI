@@ -1,7 +1,5 @@
-from fastapi import APIRouter
-from pydantic_core import Url
+from fastapi import APIRouter, HTTPException, status
 from sqlalchemy.future import select
-from entrada.schema import EntradaSchema
 from entrada.model import EntradaModel
 from partida.model import PartidaModel
 from contrib.schemas import Message
@@ -16,6 +14,9 @@ router = APIRouter()
 async def get_entrada(id: int, db_session: DatabaseDependency):
 
     partida_db: PartidaModel = (await db_session.execute(select(PartidaModel).filter_by(pk_id=id))).scalars().first()
+
+    if not partida_db:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Partida não encontrada ID: {id}")
 
     if partida_db.Url == '':
         return {"message": f"Partida sem url, por favor atualizar ID: {partida_db.pk_id}"}
