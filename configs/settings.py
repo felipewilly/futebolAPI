@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    DB_URL: str = Field(default=os.getenv('DB_URL', 'postgresql+asyncpg://postgres:postgres@localhost/Fastapi'))
+    DB_URL: str = Field(default=os.getenv('DB_URL', 'postgresql+asyncpg://postgres:postgres@localhost/futbolv2'))
 
 
 settings = Settings()
