@@ -19,7 +19,9 @@ class EntradaModel(BaseModel):
     Ataque: Mapped[int] = mapped_column(Integer, nullable=False)
     AtaqueP: Mapped[int] = mapped_column(Integer, nullable=False)
     Posse: Mapped[int] = mapped_column(Integer, nullable=False)
-    Chute: Mapped[int] = mapped_column(Integer, nullable=False)
+    Chute: Mapped[int] = mapped_column(Integer, nullable=True)
+    ChuteF: Mapped[int] = mapped_column(Integer, nullable=True)
+    Dados: Mapped[str] = mapped_column(String(255), nullable=False)
     probabilidade: Mapped['ProbabilidadeModel'] = relationship(back_populates="entrada")
 
     

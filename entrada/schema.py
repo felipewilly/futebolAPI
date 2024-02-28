@@ -12,4 +12,5 @@ class EntradaSchema(BaseSchema_id):
     Ataque: Annotated[PositiveInt, Field(description='Porcentagem Ataque', example=50)]
     AtaqueP: Annotated[PositiveInt, Field(description='Porcentagem Ataque Perigoso', example=50)]
     Chute: Annotated[PositiveInt, Field(description='Porcentagem Chute', example=50)]
+    ChuteF: Annotated[PositiveInt, Field(description='Porcentagem Chute no Gol', example=50)]
     Posse: Annotated[PositiveInt, Field(description='Porcentagem Posse de Bola', example=50)]

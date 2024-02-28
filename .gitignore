@@ -12,7 +12,10 @@ alembic.ini
 /migrations/versions
 # C extensions
 *.so
-
+tasks/
+/tasks
+tasks/coletor.py
+/tasks/coletor.py
 # Distribution / packaging
 .Python
 build/

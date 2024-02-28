@@ -11,7 +11,11 @@ class Partida_Vasco:
     Posse: int = 50
 
     def return_dict(self):
-        return {'Nome': self.Nome, 'Ataque': self.Ataque, 'AtaqueP': self.AtaqueP, 'Chute': self.Chute, 'Posse': self.Posse}
+        return {'Nome': self.Nome, 
+                'Ataque': self.Ataque, 
+                'AtaqueP': self.AtaqueP, 
+                'Chute': self.Chute, 
+                'Posse': self.Posse}
 
 def check_url(Url: str):
     '''Função temporaria para testar a partida acontecendo'''
