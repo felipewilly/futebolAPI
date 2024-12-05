@@ -24,7 +24,7 @@ async def post_partida(db_session: DatabaseDependency, partida: PartidaSchema = 
     except Exception:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Erro ao criar a partida")
 
-    return {'message': f'Partida criada com sucesso ID {partida_db.pk_id}'}
+    return {'message':partida_db.pk_id}
 
 @router.get("/all", 
     summary='Retorna Varias partidas', 
@@ -68,5 +68,4 @@ async def update_partida(id: int, db_session: DatabaseDependency, partida_up: Pa
     await db_session.commit()
     await db_session.refresh(partida_db)
 
->>>>>>> 6cab4f90aa5a9639009bbda04b536276f927cff9
-    return {'message': f'Partida atualizada com sucesso ID {partida_db.pk_id}, Nova URL {partida_db.Url}'}
+    return {'message': f'Partida atualizada com sucesso ID {partida_db.pk_id}'}
